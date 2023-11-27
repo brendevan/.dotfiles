@@ -30,7 +30,7 @@ alias ddev-rerun='
   fi
   DDEV_STOPPED=$(docker ps -a | grep "ddev" | awk "{print \$1}")
   if [ ! -z $DDEV_STOPPED ]
-    then echo "Removing ddev container" && docker rm ddev
+    then echo "Removing previous ddev container" && docker rm ddev
     else echo "No previously created ddev container found - create one with ddev-run"
   fi
   docker run -it --name ddev ddev
@@ -41,12 +41,12 @@ alias ddev-rerun='
 alias ddev-purify='
   CONTAINERS=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
   if [ -z "$CONTAINERS" ]
-    then echo "No containers to wipe"
+    then echo "No containers to purify"
     else echo "Stopping containers..." && docker stop $CONTAINERS && echo "Wiping containers..." && docker rm -v $CONTAINERS
   fi
   IMAGES=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
   if [ -z $IMAGES ]
-    then echo "No images to wipe"
+    then echo "No images to purify"
     else echo "Wiping images:" && docker rmi -f $IMAGES
   fi
 '
