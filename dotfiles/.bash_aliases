@@ -14,19 +14,27 @@ alias ddev-update='git -C ~/.dockerdev pull'
 # BUILD: Build the ddev Docker image
 alias ddev-build='docker build ~/.dockerdev -t ddev'
 
-# RUN: Run the ddev Docker container
+# RUN: Run the ddev Docker container (unless one is already running)
 alias ddev-run='
-  DDEV_RUNNING=$(docker ps | grep -E "ddev")
-  if [ ! -z DDEV_RUNNING ]
-    then docker stop ddev && echo "Stopped running ddev container"
+  DDEV_PREVIOUS=$(docker ps -a | grep "ddev" | awk "{print \$1}")
+  if [ ! -z $DDEV_PREVIOUS ]
+    then echo "STOP: A ddev container already exists!" && echo "Replace it with a new one by calling ddev-rerun"
+    else docker run -it --name ddev ddev
   fi
-  DDEV_STOPPED=$(docker ps -a | grep -E "ddev")
-  if [ ! -z DDEV_CONTAINERS ]
-    then docker rm ddev && echo "Removed previously created ddev container"
+'
+# RERUN: Stop and remove all previously created ddev containers and rerun
+alias ddev-rerun='
+  DDEV_RUNNING=$(docker ps | grep "ddev")
+  if [ ! -z $DDEV_RUNNING ]
+    then echo "Stopping running ddev container" && docker stop ddev
+  fi
+  DDEV_STOPPED=$(docker ps -a | grep "ddev" | awk "{print \$1}")
+  if [ ! -z $DDEV_STOPPED ]
+    then echo "Removing ddev container" && docker rm ddev
+    else echo "No previously created ddev container found - create one with ddev-run"
   fi
   docker run -it --name ddev ddev
 '
-
 # PURIFY: Delete all other Docker containers, images, volumes and networks 
 #         (i.e. delete all non-ddev-associated Docker stuff )
 #   - Volumes and networks not yet "purified" as they are not yet setup for ddev
