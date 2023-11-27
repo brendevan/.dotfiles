@@ -15,13 +15,26 @@ alias ddev-update='git -C ~/.dockerdev pull'
 alias ddev-build='docker build ~/.dockerdev -t ddev'
 
 # RUN: Run the ddev Docker container
-alias ddev-run='docker run -it --name ddev ddev'
+alias ddev-run='
+  docker stop ddev
+  docker rm ddev
+  docker run -it --name ddev ddev
+'
 
 # PURIFY: Delete all other Docker containers, images, volumes and networks 
 #         (i.e. delete all non-ddev-associated Docker stuff )
 #   - Volumes and networks not yet "purified" as they are not yet setup for ddev
 alias ddev-purify='
-  CONTAINERS=$(docker ps -a)
+  CONTAINERS=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
+  if [ -z "$CONTAINERS" ]
+    then echo "No containers to wipe"
+    else echo "Stopping containers..." && docker stop $CONTAINERS && echo "Wiping containers..." && docker rm -v $CONTAINERS
+  fi
+  IMAGES=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
+  if [ -z $IMAGES ]
+    then echo "No images to wipe"
+    else echo "Wiping images:" && docker rmi -f $IMAGES
+  fi
 '
 
 # =======================================
@@ -59,17 +72,4 @@ alias docker-wipe='
     else echo "Wiping networks..." && docker network rm $NETWORKS
   fi
   docker system prune -f
-'
-
-alias test='
-  CONTAINERS=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
-  if [ -z "$CONTAINERS" ]
-    then echo "No containers to wipe"
-    else echo "Stopping containers..." && docker stop $CONTAINERS && echo "Wiping containers..." && docker rm -v $CONTAINERS
-  fi
-  IMAGES=$(docker ps -a | grep -vE "ddev" | awk "NR > 1 {print \$1}")
-  if [ -z $IMAGES ]
-    then echo "No images to wipe"
-    else echo "Wiping images:" && docker rmi -f $IMAGES
-  fi
 '
