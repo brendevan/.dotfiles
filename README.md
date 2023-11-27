@@ -5,7 +5,7 @@
 * **Windows**: Open command prompt as admin and run
 
 ```
-%HOMEPATH%\.dotfiles\scripts\windows\link_dotfiles_win.bat
+%HOMEPATH%\.dotfiles\scripts\windows\link_dotfiles.bat
 ```
 
 ## Aliases
