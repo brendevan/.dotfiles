@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Terminal
+ln -f -s ~/.dotfiles/dotfiles/.bash_aliases   ~/.bash_aliases
 ln -f -s ~/.dotfiles/dotfiles/.bashrc         ~/.bashrc
 ln -f -s ~/.dotfiles/dotfiles/.zshrc          ~/.zshrc
 ln -f -s ~/.dotfiles/dotfiles/.p10k.zsh       ~/.p10k.zsh

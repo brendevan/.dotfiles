@@ -16,8 +16,14 @@ alias ddev-build='docker build ~/.dockerdev -t ddev'
 
 # RUN: Run the ddev Docker container
 alias ddev-run='
-  docker stop ddev
-  docker rm ddev
+  DDEV_RUNNING=$(docker ps | grep -E "ddev")
+  if [ ! -z DDEV_RUNNING ]
+    then docker stop ddev && echo "Stopped running ddev container"
+  fi
+  DDEV_STOPPED=$(docker ps -a | grep -E "ddev")
+  if [ ! -z DDEV_CONTAINERS ]
+    then docker rm ddev && echo "Removed previously created ddev container"
+  fi
   docker run -it --name ddev ddev
 '
 
