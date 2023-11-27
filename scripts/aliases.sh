@@ -18,3 +18,8 @@ alias docker-wipe='docker system prune -a --volumes'
 
 
 # Git
+
+
+
+# Test
+alias hello='echo "hello"'
