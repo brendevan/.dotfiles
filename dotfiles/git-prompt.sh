@@ -12,7 +12,7 @@
 
 SYM_STYLE='🐟 '       # 🦑 🐙 🐠 🐟 🐡 🦈 🐬 🐳 🐋
 SYM_TRUNC_DIRS='…/'   # 
-SYM_PROMPT=' 🠊  '     # ❯ ▶ 👉 🠊 🠖 ⯮ ⮚
+SYM_PROMPT=' 🠊 '     # ❯ ▶ 👉 🠊 🠖 ⯮ ⮚ 🠶
 
 # COLORS:
 # More colors here: https://gist.github.com/vratiu/9780109
