@@ -8,22 +8,29 @@
 #                       SYMBOLS AND COLORS
 # =================================================================
 # SYMBOLS:
+# More symbols here: https://en.wikipedia.org/wiki/List_of_emoticons
 
-SYM_STYLE='🐟 '       # SYMBOL USED FOR STYLE
-                     # 
-SYM_TRUNC_DIRS='…/'   # SYMBOL USED TO REPRESENT TRUNCATED DIRS
-                     #
-SYM_PROMPT=' 🐟  '        # ❯ ▶
+SYM_STYLE='🐟 '       # 🦑 🐙 🐠 🐟 🐡 🦈 🐬 🐳 🐋
+SYM_TRUNC_DIRS='…/'   # 
+SYM_PROMPT=' 🠊  '     # ❯ ▶ 👉 🠊 🠖 ⯮ ⮚
 
-# COLORS\:
-# '...[<1=bold; 0=reg>;<col as XXm>]'
-COL1='\[\033[1;34m\]'
-COL2='\[\033[0;35m\]'
-COL3='\[\033[0;35m\]'
-COL4='\[\033[0;34m\]'
-COL5='\[\033[0;34m\]'
-COL_INPUT='\[\033[0;30m\]'
+# COLORS:
 # More colors here: https://gist.github.com/vratiu/9780109
+Black="\[\033[0;30m\]"        # Black
+Red="\[\033[0;31m\]"          # Red
+Green="\[\033[0;32m\]"        # Green
+Yellow="\[\033[0;33m\]"       # Yellow
+Blue="\[\033[0;34m\]"         # Blue
+Purple="\[\033[0;35m\]"       # Purple
+Cyan="\[\033[0;36m\]"         # Cyan
+White="\[\033[0;37m\]"        # White
+# '...[<1=bold; 0=reg>;<col as XXm>]'
+COL1=$Blue
+COL2=$Purple
+COL3=$Purple
+COL4=$Blue
+COL5=$Blue
+COL_INPUT=$Black
 
 # =================================================================
 #                       PROMPT ARRANGEMENT
