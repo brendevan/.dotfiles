@@ -9,11 +9,11 @@
 # =================================================================
 # SYMBOLS:
 
-SYM_STYLE='㋡ '       # SYMBOL USED FOR STYLE
+SYM_STYLE='🐟 '       # SYMBOL USED FOR STYLE
                      # 
 SYM_TRUNC_DIRS='…/'   # SYMBOL USED TO REPRESENT TRUNCATED DIRS
                      #
-SYM_PROMPT=' ❯ '        # ❯ ▶
+SYM_PROMPT=' 🐟  '        # ❯ ▶
 
 # COLORS\:
 # '...[<1=bold; 0=reg>;<col as XXm>]'
