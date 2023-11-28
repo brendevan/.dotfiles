@@ -1,4 +1,10 @@
 # =======================================
+#               Miscellaneous
+# =======================================
+alias r='radian'
+alias R='R'
+
+# =======================================
 #               dockerdev
 # =======================================
 # INITIALIZE: Clone dockerdev repo into ~/.dockerdev if it doesn;t already exist
