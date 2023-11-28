@@ -75,15 +75,20 @@ alias docker-wipe='
     then echo "No images to wipe"
     else echo "Wiping images:" && docker rmi $IMAGES
   fi
+  docker system prune --force
+'
+alias docker-wipe-volumes='
   VOLUMES=$(docker volume ls -q)
   if [ -z $VOLUMES ]
     then echo "No volumes to wipe"
     else echo "Wiping volumes..." && docker volume rm $VOLUMES
   fi
+  docker system prune --force --volumes
+'
+alias docker-wipe-networks='
   NETWORKS=$(docker network ls | grep -vE "bridge|host|none" | awk "NR > 1 {print \$1}")
   if [ -z $NETWORKS ]
     then echo "No networks to wipe"
     else echo "Wiping networks..." && docker network rm $NETWORKS
   fi
-  docker system prune -f
 '
